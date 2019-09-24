@@ -1,6 +1,9 @@
 document.querySelectorAll("section").forEach(section => {
   section.addEventListener("drop", event => drop(event));
   section.addEventListener("dragover", event => allowDrop(event));
+  section.addEventListener("dragenter", event => dragenter(event));
+  section.addEventListener("dragleave", event => dragLeave(event));
+  section.addEventListener("dragend", event => dragEnd(event));
 });
 
 document.querySelectorAll('[draggable="true"]').forEach(section => {
@@ -21,11 +24,41 @@ function drop(ev) {
   const drag = document.querySelector("[selected]");
   drag.removeAttribute("selected");
 
-  let container = ev.target;
+  let target = ev.target;
 
-  if (container.hasAttribute("draggable")) {
-    container = container.parentElement;
+  if (target.hasAttribute("draggable")) {
+    target = target.parentElement;
   }
 
-  container.appendChild(drag);
+  target.appendChild(drag);
+}
+
+function dragenter(ev) {
+  let target = ev.target;
+
+  if (target.hasAttribute("draggable")) {
+    target = target.parentElement;
+  }
+
+  target.classList.add("bg-info");
+}
+
+function dragLeave(ev) {
+  let target = ev.target;
+
+  if (target.hasAttribute("draggable")) {
+    target = target.parentElement;
+  }
+
+  target.classList.remove("bg-info");
+}
+
+function dragEnd(ev) {
+  let target = ev.target;
+
+  if (target.hasAttribute("draggable")) {
+    target = target.parentElement;
+  }
+
+  target.classList.remove("bg-info");
 }
