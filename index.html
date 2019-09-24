@@ -1,57 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Dragdrop</title>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <style>
-  </style>
+  <link rel="stylesheet" href="./static/style/bootstrap.min.css">
+  <link rel="stylesheet" href="./static/style/style.css">
 
 </head>
-<body class="w-100 h-100">
-  
-  <div class="row m-3">
-    <div class="col-6 border" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <li draggable="true" ondragstart="drag(event)">1</li>
-      <li draggable="true" ondragstart="drag(event)">2</li>
-      <li draggable="true" ondragstart="drag(event)">3</li>
-      <li draggable="true" ondragstart="drag(event)">4</li>
-      <li draggable="true" ondragstart="drag(event)">5</li>
-    </div>
-    <div class="col-6 border">
-      <div class="drop-container w-100 h-100" ondrop="drop(event)" ondragover="allowDrop(event)">
-      </div>
-    </div>
+
+<body>
+
+  <div class="row no-gutters h-100">
+    <section class="col-6 p-4 list-group">
+      <div draggable="true" class="list-group-item list-group-item-action">Element 1</div>
+      <div draggable="true" class="list-group-item list-group-item-action">Element 2</div>
+      <div draggable="true" class="list-group-item list-group-item-action">Element 3</div>
+      <div draggable="true" class="list-group-item list-group-item-action">Element 4</div>
+    </section>
+    <section class="col-6 p-4 list-group">
+
+    </section>
   </div>
-  
-  <script>
-    function allowDrop(ev) {
-      ev.preventDefault();
-    }
-    
-    function drag(ev) {
-      let target = ev.target
-      target.setAttribute("drag", "true")
-    }
-    
-    function drop(ev) {
-      ev.preventDefault();
-      const drag = document.querySelector("[drag]")
-      drag.removeAttribute("drag")
 
-      let container = ev.target
+  <script src="./static/script/dragdrop.js"></script>
 
-      if(container.nodeName.toLowerCase() === 'li'){
-        container = container.parentElement        
-      }
-
-      container.appendChild(drag);
-    }
-  </script>
-  
 </body>
+
 </html>
